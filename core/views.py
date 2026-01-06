@@ -1,4 +1,13 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def home(request):
-    return HttpResponse("Halo! Ini proyek portofolio django pertamaku")
+    return render(request, "core/home.html")
+
+def about(request):
+    return render(request,"core/about.html")
+
+def projects(request):
+    return render(request,"core/projects.html")
+
+def contact(request):
+    return render(request,"core/contact.html")
