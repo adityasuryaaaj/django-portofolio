@@ -1,9 +1,24 @@
 {% extends "core/base.html" %}
 {% block title %}Projects{% endblock %}
 {% block content %}
-  <h1>Projects</h1>
-  <ul>
-    <li>Project 1 - Coming soon</li>
-    <li>Project 2 - Coming soon</li>
-  </ul>
+<h1>Projects</h1>
+
+{% if projects %}
+<div style="display:grid; gap: 12px;">
+    {% for p in projects %}
+    <div class="card">
+        <h2 style="margin: 0 0 8px 0;">{{ p.title }}</h2>
+        {% if p.description %}
+        <p style="margin: 0 0 8px 0;">{{ p.description }}</p>
+        {% endif %}
+
+        {% if p.url %}
+        <a href="{{ p.url }}" target="_blank" rel="noreferrer">Lihat Project</a>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>Belum ada project. Tambahkan Lewat admin</p>
+{% endif %}
 {% endblock %}
