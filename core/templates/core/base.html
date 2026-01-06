@@ -1,29 +1,87 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{% block title %}Django Portofolio{% endblock %}</title>
-    <style>
-  body { font-family: system-ui, Arial, sans-serif; margin: 0; background:#fafafa; }
-  nav { padding: 14px 18px; border-bottom: 1px solid #eee; display:flex; gap:14px; background:white; }
-  nav a { text-decoration: none; color: #111; font-weight: 600; }
-  main { padding: 28px 18px; max-width: 900px; margin: 0 auto; }
-  .card { background:white; border: 1px solid #eee; border-radius: 14px; padding: 16px; box-shadow: 0 1px 6px rgba(0,0,0,.04); }
-  h1 { margin: 0 0 16px 0; }
-</style>
 
-  </head>
-  <body>
-    <nav>
-      <a href="{% url 'home' %}">Home</a>
-      <a href="{% url 'about' %}">About</a>
-      <a href="{% url 'projects' %}">Projects</a>
-      <a href="{% url 'contact' %}">Contact</a>
-    </nav>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Django Portofolio{% endblock %}</title>
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      margin: 0;
+      background: #fafafa;
+    }
 
-    <main>
-      {% block content %}{% endblock %}
-    </main>
-  </body>
+    nav {
+      padding: 14px 18px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      gap: 14px;
+      background: white;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 28px 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, .04);
+    }
+
+    h1 {
+      margin: 0 0 16px 0;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-sizing: border-box;
+      font: inherit;
+    }
+
+    label>div {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav>
+    <a href="{% url 'home' %}">Home</a>
+    <a href="{% url 'about' %}">About</a>
+    <a href="{% url 'projects' %}">Projects</a>
+    <a href="{% url 'contact' %}">Contact</a>
+  </nav>
+
+  <main>
+    {% if messages %}
+    <div style="display: grid; gap: 10px; margin-bottom: 14px;">
+      {% for message in messages %}
+      <div class="card" style="border-left: 6px solid #22c55e;">
+        {{message}}
+      </div>
+      {%endfor%}
+    </div>
+    {%endif%}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+
 </html>

@@ -2,6 +2,30 @@
 {% block title %}Contact{% endblock %}
 {% block content %}
   <h1>Contact</h1>
-  <p>Email: tulis email kamu</p>
-  <p>GitHub: adityasuryaaaj</p>
+
+  <form method="post" class="card" style="display:grid; gap:12px; max-width:560px;">
+    {% csrf_token %}
+
+    <label>
+      <div>Nama</div>
+      {{ form.name }}
+      {% for e in form.name.errors %}<div style="color:#b91c1c;">{{ e }}</div>{% endfor %}
+    </label>
+
+    <label>
+      <div>Email</div>
+      {{ form.email }}
+      {% for e in form.email.errors %}<div style="color:#b91c1c;">{{ e }}</div>{% endfor %}
+    </label>
+
+    <label>
+      <div>Pesan</div>
+      {{ form.message }}
+      {% for e in form.message.errors %}<div style="color:#b91c1c;">{{ e }}</div>{% endfor %}
+    </label>
+
+    <button type="submit" style="padding:10px 14px; border-radius:10px; border:1px solid #ddd; cursor:pointer;">
+      Kirim
+    </button>
+  </form>
 {% endblock %}
